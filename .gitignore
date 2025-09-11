@@ -1,0 +1,5 @@
+# Dependencies
+front_end/node_modules/
+
+# Next.js build
+front_end/.next/
