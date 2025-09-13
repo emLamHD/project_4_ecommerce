@@ -1,3 +1,12 @@
+--Soft Delete Handling: Tất cả views đều lọc các bản ghi đã bị xóa mềm (deleted_at IS NULL)
+
+-- Active State Management: Kiểm tra trạng thái hoạt động của users (is_locked = 'no')
+
+-- Denormalization: Tính toán trước các giá trị như item_count, total_value
+
+-- Transaction Safety: Toàn bộ được thực thi trong transaction để đảm bảo tính atomicity
+
+-- Error Handling: Xử lý lỗi chi tiết và rollback khi cần thiết
 BEGIN TRY
     BEGIN TRANSACTION;
 
