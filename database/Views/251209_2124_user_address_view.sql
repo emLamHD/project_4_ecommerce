@@ -1,3 +1,12 @@
+-- Transaction Management: Sử dụng transaction để đảm bảo tính atomicity
+
+-- Error Handling: Xử lý lỗi chi tiết và rollback khi cần thiết
+
+-- Soft Delete Handling: Lọc các bản ghi đã bị xóa mềm
+
+-- Correlated Subqueries: Truy vấn con để lấy thông tin địa chỉ mặc định
+
+-- CREATE OR ALTER: Tương thích với SQL Server 2016+
 USE EcommerceDB;
 GO
 

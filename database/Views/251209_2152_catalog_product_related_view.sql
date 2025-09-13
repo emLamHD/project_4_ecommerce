@@ -1,3 +1,12 @@
+-- Comprehensive Denormalization: Tính toán trước các giá trị tổng hợp phức tạp
+
+-- Soft Delete Handling: Lọc các sản phẩm đã bị xóa mềm (deleted_at IS NULL)
+
+-- Correlated Subqueries: Sử dụng nhiều subquery để lấy thông tin tổng hợp
+
+-- Data Aggregation: Tính toán min, max, avg, count từ các bảng liên quan
+
+-- Transaction Safety: Đảm bảo tính atomicity cho toàn bộ operation
 
 
 BEGIN TRY
