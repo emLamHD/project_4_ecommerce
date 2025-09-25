@@ -1,5 +1,17 @@
 -- vw_inventory_logs_active ghi lai thong tin cac bien the san pham dang hoat dong bao gom SKU va ten san pham.
+-- Data Integrity: Đảm bảo chỉ hiển thị log của các sản phẩm còn hoạt động
 
+-- Denormalization:
+
+-- Lấy sku từ bảng product_variants để tiện cho tra cứu
+
+-- Lấy product_name từ bảng products để hiển thị thông tin đầy đủ
+
+-- INNER JOIN: Sử dụng INNER JOIN để đảm bảo chỉ lấy log của các variant và product tồn tại
+
+-- Transaction Safety: Thực thi trong transaction để đảm bảo tính atomicity
+
+-- Error Handling: Xử lý lỗi chi tiết và rollback khi cần thiết
 BEGIN TRY
     BEGIN TRANSACTION;
 
