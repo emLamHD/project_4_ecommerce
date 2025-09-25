@@ -1,6 +1,6 @@
 -- ======================================
 -- Migration: Init Schema
--- Date: 2025-09-12/4:23pm
+-- Date: 2025-09-25/8:16pm
 -- Author: emlamhd
 -- ======================================
 
@@ -277,6 +277,35 @@ BEGIN TRY
 		CONSTRAINT FK_feedback_user FOREIGN KEY (user_id) REFERENCES users(id),
 		CONSTRAINT FK_feedback_orderdetail FOREIGN KEY (order_detail_id) REFERENCES order_details(id)
 	);
+
+	-- 22. Banners
+	CREATE TABLE banners (
+		id INT PRIMARY KEY IDENTITY(1,1),
+		name VARCHAR(255),
+		image TEXT,
+		status VARCHAR(20) CHECK (status IN ('active', 'inactive')),
+		created_at DATETIME DEFAULT GETDATE(),
+		updated_at DATETIME DEFAULT GETDATE(),
+		is_deleted BIT DEFAULT 0,
+		created_by INT,
+		updated_by INT
+		);
+
+		CREATE TABLE banner_details (
+		id INT PRIMARY KEY IDENTITY(1,1),
+		product_id INT,
+		banner_id INT,
+		created_at DATETIME DEFAULT GETDATE(),
+		updated_at DATETIME DEFAULT GETDATE(),
+		is_deleted BIT DEFAULT 0,
+		created_by INT,
+		updated_by INT
+		);
+		ALTER TABLE banner_details
+		ADD CONSTRAINT FK_banner_details_banners
+		FOREIGN KEY (banner_id)
+		REFERENCES banners(id);
+
 	CREATE INDEX IX_feedback_product ON feedbacks(product_id);
 	CREATE INDEX IX_feedback_user ON feedbacks(user_id);
 
