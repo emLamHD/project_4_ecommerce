@@ -1,3 +1,10 @@
+using back_end.Services;
+using Ecom.Application.Interfaces.Services;
+using Ecom.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace back_end
 {
@@ -6,17 +13,47 @@ namespace back_end
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var configuration = builder.Configuration;
+            var services = builder.Services;
 
-            // Add services to the container.
+            services.AddApplicationServices();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            services.AddInfrastructureServices(configuration);
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserAccessor, CurrentUserAccessor>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    var jwtSettings = configuration.GetSection("JwtSettings");
+                    var secretKey = jwtSettings["SecretKey"];
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
+
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtSettings["Issuer"],
+                        ValidateAudience = true,
+                        ValidAudience = jwtSettings["Audience"],
+
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero 
+                    };
+                });
+
+            services.AddAuthorization();
+
+
+            services.AddControllers();
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -25,8 +62,8 @@ namespace back_end
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

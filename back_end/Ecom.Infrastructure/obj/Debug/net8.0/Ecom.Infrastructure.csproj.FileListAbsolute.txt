@@ -1,0 +1,5 @@
+E:\aptech\project ky 4 (loading)\project_4_ecommerce\back_end\Ecom.Infrastructure\obj\Debug\net8.0\Ecom.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\aptech\project ky 4 (loading)\project_4_ecommerce\back_end\Ecom.Infrastructure\obj\Debug\net8.0\Ecom.Infrastructure.AssemblyInfoInputs.cache
+E:\aptech\project ky 4 (loading)\project_4_ecommerce\back_end\Ecom.Infrastructure\obj\Debug\net8.0\Ecom.Infrastructure.AssemblyInfo.cs
+E:\aptech\project ky 4 (loading)\project_4_ecommerce\back_end\Ecom.Infrastructure\obj\Debug\net8.0\Ecom.Infrastructure.csproj.CoreCompileInputs.cache
+E:\aptech\project ky 4 (loading)\project_4_ecommerce\back_end\Ecom.Infrastructure\obj\Debug\net8.0\Ecom.Infrastructure.sourcelink.json
