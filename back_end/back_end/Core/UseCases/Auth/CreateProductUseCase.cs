@@ -2,11 +2,8 @@
 
 namespace back_end.Core.UseCases.Auth
 {
-    public class CreateProductUseCase : Controller
+    public interface CreateProductUseCase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        Task<int> ExecuteAsync(CreateProductDto productData);
     }
 }
