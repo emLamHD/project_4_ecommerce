@@ -2,11 +2,8 @@
 
 namespace back_end.Core.UseCases.Auth
 {
-    public class UpdateProductUseCase : Controller
+    public interface UpdateProductUseCase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        Task<bool> ExecuteAsync(int productId, UpdateProductDto productData, int updatingUserId);
     }
 }
